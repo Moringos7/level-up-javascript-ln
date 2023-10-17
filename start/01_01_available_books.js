@@ -1,4 +1,4 @@
-class books {
+class Book {
   
   constructor(title,author,isbn,numCopies){
     this.title = title;
@@ -9,36 +9,41 @@ class books {
 
   getAvailability(){
     if(this.numCopies == 0){
-      return "Out of stock"
+      return "Out of stock" + this.numCopies
     }else if(this.numCopies < 10){
-      return "low stock"
+      return "low stock" + this.numCopies
     }else{
-      return "in stock"
+      return "in stock" + this.numCopies
     }
   }
 
   
   sell(numSold){
-    for (let index = 0; index < numSold; index++) {
-      this.sell()
+    if(arguments.length == 0){
+      numSold = 1
     }
-  }
-
-  sell(){
-    if(this.numCopies == 0){
-        throw "Don't have copies available"
+    if(this.numCopies - numSold >= 0){
+      this.numCopies -= numSold
+    }else{
+      throw "Don't have enough copies available"
     }
-    this.numCopies--
   }
 
   restock(numCopies){
+    if(arguments.length == 0){
+      numCopies = 5
+    }
     this.numCopies += numCopies
-  }
-
-  restock(){
-    this.numCopies += 5
   }
 
 }
 
 console.log("Hello José Miguel")
+const hp = new Book("Harry Potter","JK","978-3-16-148410-0",0)
+console.log(hp.getAvailability())
+hp.restock()
+console.log(hp.getAvailability())
+hp.restock()
+console.log(hp.getAvailability())
+hp.sell(2)
+console.log(hp.getAvailability())
