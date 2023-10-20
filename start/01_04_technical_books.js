@@ -30,4 +30,13 @@ class Book {
   }
 }
 
-// Write your code here
+class TechnicalBook extends Book {
+  constructor (title, author, ISBN, numCopies, edition){
+    super(title, author, ISBN, numCopies)
+    this.edition = edition
+  }
+
+  get edition(){
+    return this.edition
+  }
+}
