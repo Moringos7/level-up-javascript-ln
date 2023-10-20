@@ -21,6 +21,10 @@
         isVegetarian: false
       },
       {
+        name: "No Chicken parmesan",
+        isVegetarian: true
+      },
+      {
         name: "Stuffed shells",
         isVegetarian: true
       },
@@ -33,8 +37,23 @@
         isVegetarian: true
       }
     ]
-    // Write your code here
-
+    
+   function getVegetarianMenu(menu){
+      
+      const vegetarianMenu = menu.filter((meal) =>
+        meal.isVegetarian
+      )
+      
+      const menuList = document.getElementById("menu")
+    
+      vegetarianMenu.forEach(vegetarianMeal => {
+        let li = document.createElement("li")
+        li.innerHTML = vegetarianMeal.name
+        menuList.appendChild(li)
+      });
+   
+    }
+    getVegetarianMenu(menu)
   </script>
 </body>
 
