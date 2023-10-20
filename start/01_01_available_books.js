@@ -6,6 +6,11 @@ class Book {
     this.isbn = isbn;
     this.numCopies = numCopies; 
   }
+  
+  // This is used like a property
+  get availability() {
+    return this.getAvailability();
+  }
 
   getAvailability(){
     if(this.numCopies == 0){
