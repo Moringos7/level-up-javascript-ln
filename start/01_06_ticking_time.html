@@ -15,7 +15,22 @@
   <div id="clock"></div>
 
   <script>
-    // Write your code here
+    var today = new Date()
+    const spaceTime = document.getElementById("clock")
+    function setTimeOnDiv(spaceTime,hour,minutes,seconds){
+      let hourS = (hour < 10 ? '0' : '') + hour
+      let minutesS = (minutes < 10 ? '0' : '') + minutes
+      let secondsS = (seconds < 10 ? '0' : '') + seconds
+      spaceTime.textContent = `${hourS} : ${minutesS} : ${secondsS}`
+    }
+    //setTimeOnDiv(document.getElementById("clock"), today.getHours(), today.getMinutes(), today.getSeconds())
+    var delay = 0
+    while(true){
+      setTimeout(() => {
+        setTimeOnDiv(document.getElementById("clock"), today.getHours(), today.getMinutes(), today.getSeconds())
+      }, delay);
+      delay += 1000
+    }  
     
   </script>
 </body>
