@@ -17,7 +17,7 @@
 
   <script>
     
-    function* innerGenerator() {
+    function* getStops() {
         yield "Poughkeepsie";
         yield "Newburgh";
         yield "Peekskill";
@@ -26,19 +26,15 @@
         yield "Grand Central";
       }
 
-    function* outerGenerator() {
-      yield* innerGenerator();
-    } 
-    const generator = outerGenerator();
+    const nycTrail = getStops();
 
     function nextStation(){
-      const station = generator.next()
-      document.getElementById("next-station").innerHTML = `Next Station: ${station.value}`;
-      if(station.value == "Grand Central"){
-        const h2 = document.createElement('h2')
-        h2.innerHTML = "We Made it!";
-        document.body.append(h2);
+      let station = nycTrail.next()
+      if(station.done){
+        document.getElementById("next-station").innerHTML = "We made it!";
         document.getElementById("next-stop").disabled = true;
+      }else{
+        document.getElementById("next-station").innerHTML = `Next Station: ${station.value}`;
       }
     }
   </script>
