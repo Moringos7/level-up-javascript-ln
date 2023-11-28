@@ -12,11 +12,35 @@
   <!-- To run this file right click the file in the navigation bar and select "Open with live server. Then open the developer tools in the browser and head to the console window."-->
 
   <!-- Use this element to get to the next stop-->
-  <button id="next-stop">Next Stop</button>
+  <button id="next-stop" onclick="nextStation()">Next Stop</button>
+  <h1 id="next-station">Next Station: (click btn)</h1>
 
   <script>
-    // Write your code here
+    
+    function* innerGenerator() {
+        yield "Poughkeepsie";
+        yield "Newburgh";
+        yield "Peekskill";
+        yield "Yonkers";
+        yield "Bronx";
+        yield "Grand Central";
+      }
 
+    function* outerGenerator() {
+      yield* innerGenerator();
+    } 
+    const generator = outerGenerator();
+
+    function nextStation(){
+      const station = generator.next()
+      document.getElementById("next-station").innerHTML = `Next Station: ${station.value}`;
+      if(station.value == "Grand Central"){
+        const h2 = document.createElement('h2')
+        h2.innerHTML = "We Made it!";
+        document.body.append(h2);
+        document.getElementById("next-stop").disabled = true;
+      }
+    }
   </script>
 </body>
 
